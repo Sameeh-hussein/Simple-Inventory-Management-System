@@ -45,5 +45,17 @@ namespace Simple_Inventory_Management_System
         {
             return inventory.First(it => it.name == name);
         }
+
+        public void DeleteProduct(Product product)
+        {
+            if (product != null)
+            {
+                inventory.Remove(product);
+            }
+            else
+            {
+                throw new NullReferenceException("Failed to add the product !");
+            }
+        }
     }
 }

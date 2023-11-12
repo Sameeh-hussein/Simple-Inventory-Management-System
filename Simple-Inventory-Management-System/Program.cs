@@ -1,4 +1,5 @@
 ﻿using Simple_Inventory_Management_System;
+using System.Diagnostics;
 using System.Linq;
 
 internal class Program
@@ -16,6 +17,10 @@ internal class Program
         // Edit A Product
         Console.Write("Enter the product name: ");
         EditProduct(Console.ReadLine());
+
+        //Delete A Product
+        Console.Write("Enter the product name: ");
+        deleteProduct(Console.ReadLine());
     }
 
     static void AddProduct()
@@ -80,6 +85,27 @@ internal class Program
             }
 
             Console.WriteLine("All changes saved. Thanks");
+        }
+        else
+        {
+            Console.WriteLine($"Product '{name}' not found in the inventory.");
+        }
+    }
+
+    static void deleteProduct(string name)
+    {
+        if (inventory.Exist(name))
+        {
+            Product temp = inventory.findProduct(name);
+            try
+            {
+                inventory.DeleteProduct(temp);
+                Console.WriteLine("The product deleted successfully, thanks");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         else
         {
