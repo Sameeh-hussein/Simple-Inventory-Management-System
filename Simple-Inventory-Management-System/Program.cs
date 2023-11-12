@@ -9,10 +9,7 @@ internal class Program
         // Add a product
         AddProduct();
 
-        /*foreach (var item in inventory)
-        {
-            Console.WriteLine(item);
-        }*/
+        ViewAllProduct();
     }
 
     static void AddProduct()
@@ -28,12 +25,18 @@ internal class Program
 
         try
         {
-            inventory.save(null);
+            inventory.save(new Product(name, price, quantity));
             Console.WriteLine("The product added successfully, thanks");
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
         }
+    }
+
+    static void ViewAllProduct()
+    {
+        Console.WriteLine("=========All Product Table=========");
+        foreach (var it in inventory) Console.WriteLine(it);
     }
 }
