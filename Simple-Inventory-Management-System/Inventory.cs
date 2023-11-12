@@ -16,11 +16,6 @@ namespace Simple_Inventory_Management_System
             inventory = new List<Product>();
         }
 
-        public List<Product> GetProducts()
-        {
-            return inventory;
-        }
-
         public IEnumerator GetEnumerator()
         {
             foreach (var item in inventory)
@@ -39,6 +34,16 @@ namespace Simple_Inventory_Management_System
             {
                 throw new NullReferenceException("Failed to add the product !");
             }
+        }
+
+        public bool Exist(string name)
+        {
+            return inventory.Any(it => it.name == name);
+        }
+
+        public Product findProduct(string name)
+        {
+            return inventory.First(it => it.name == name);
         }
     }
 }

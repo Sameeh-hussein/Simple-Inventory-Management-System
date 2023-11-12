@@ -48,9 +48,9 @@ internal class Program
 
     static void EditProduct(string name)
     {
-        if (Exist(name))
+        if (inventory.Exist(name))
         {
-            Product temp = inventory.GetProducts().First(it => it.name == name);
+            Product temp = inventory.findProduct(name);
             char yORn;
             Console.Write("would you want to change the name? [y/n]: ");
             yORn = Convert.ToChar(Console.ReadLine());
@@ -85,10 +85,5 @@ internal class Program
         {
             Console.WriteLine($"Product '{name}' not found in the inventory.");
         }
-    }
-
-    static bool Exist(string name)
-    {
-        return inventory.GetProducts().Any(it => it.name == name);
     }
 }
