@@ -16,6 +16,11 @@ namespace Simple_Inventory_Management_System
             inventory = new List<Product>();
         }
 
+        public List<Product> GetProducts()
+        {
+            return inventory;
+        }
+
         public IEnumerator GetEnumerator()
         {
             foreach (var item in inventory)
