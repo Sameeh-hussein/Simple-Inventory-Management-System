@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simple_Inventory_Management_System
+namespace SimpleInventoryManagementSystem
 {
     public class Inventory : IEnumerable
     {
