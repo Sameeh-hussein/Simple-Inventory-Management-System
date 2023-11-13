@@ -30,21 +30,28 @@ internal class Program
     {
         Console.Write("Enter the product name: ");
         string name = Console.ReadLine();
-        
-        Console.Write("Enter the product price: ");
-        double price = Convert.ToDouble(Console.ReadLine());
 
-        Console.Write("Enter the product quantity: ");
-        int quantity = Convert.ToInt32(Console.ReadLine());
+        if (!inventory.Exist(name))
+        {
+            Console.Write("Enter the product price: ");
+            double price = Convert.ToDouble(Console.ReadLine());
 
-        try
+            Console.Write("Enter the product quantity: ");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+
+            try
+            {
+                inventory.save(new Product(name, price, quantity));
+                Console.WriteLine("The product added successfully, thanks");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        } 
+        else
         {
-            inventory.save(new Product(name, price, quantity));
-            Console.WriteLine("The product added successfully, thanks");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
+            Console.WriteLine("This product name already exist, try again !");
         }
     }
 
