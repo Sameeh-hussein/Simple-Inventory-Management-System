@@ -63,7 +63,11 @@ namespace SIMS.Test
         [Fact]
         public void ExistMethodShould()
         {
+            var prod = new Product("Egg", 10.5, 30);
 
+            inventory.save(prod);
+
+            Assert.True(inventory.Exist("Egg"));
         }
     }
 }
