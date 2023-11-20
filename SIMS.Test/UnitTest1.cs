@@ -17,8 +17,6 @@ namespace SIMS.Test
         {
             var prod = new Product("Egg", 10.5, 30);
 
-            inventory.save(prod);
-
             var result = inventory.save(prod);
 
             Assert.True(result);
@@ -29,7 +27,7 @@ namespace SIMS.Test
         public void SaveMethod_Should_ThrowExeption_When_PassNullProduct()
         {
             var ex = Assert.Throws<ArgumentNullException>(() => inventory.save(null));
-            Assert.Equal("Product cannot be null for addition!", ex.Message);
+            Assert.Equal("Product cannot be null for addition! (Parameter 'product')", ex.Message);
         }
 
         [Fact]
@@ -45,24 +43,27 @@ namespace SIMS.Test
         }
 
         [Fact]
-        public void DeleteMehtod_Should_ThrowExeption_When_PassNullProduct()
+        public void DeleteMethod_Should_ThrowException_When_PassNullProduct()
         {
             var ex = Assert.Throws<ArgumentNullException>(() => inventory.DeleteProduct(null));
-            Assert.Equal("Product cannot be null for deletion!", ex.Message);
+            Assert.Equal("Product cannot be null for deletion! (Parameter 'product')", ex.Message);
         }
 
-        [Fact]
-        public void FindProductMethodShould()
+        [Theory]
+        [InlineData("Egg", 10.5, 30)]
+        [InlineData("Milk", 5, 10)]
+        [InlineData("tomato", 9.9, 40)]
+        public void FindProductMethod_Should_ReturnProduct_WhenFindIt(string name, double price, int quantity)
         {
-            var prod = new Product("Egg", 10.5, 30);
+            var prod = new Product(name, price, quantity);
 
             inventory.save(prod);
-            var temp = inventory.findProduct("Egg");
+            var temp = inventory.findProduct(name);
 
             Assert.NotNull(temp);
-            Assert.Equal("Egg", temp.name);
-            Assert.Equal(10.5, temp.price);
-            Assert.Equal(30, temp.quantity);
+            Assert.Equal(name, temp.name);
+            Assert.Equal(price, temp.price);
+            Assert.Equal(quantity, temp.quantity);
         }
 
         [Fact]

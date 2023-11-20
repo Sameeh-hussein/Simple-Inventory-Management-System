@@ -24,7 +24,7 @@ namespace SimpleInventoryManagementSystem
             }
         }
 
-        public bool save(Product product)
+        public bool save(Product? product)
         {
             if (product != null)
             {
