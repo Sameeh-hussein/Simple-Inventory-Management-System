@@ -46,15 +46,15 @@ namespace SimpleInventoryManagementSystem
             return inventory.First(it => it.name == name);
         }
 
-        public void DeleteProduct(Product product)
+        public bool DeleteProduct(Product? product)
         {
             if (product != null)
             {
-                inventory.Remove(product);
+                return inventory.Remove(product);
             }
             else
             {
-                throw new NullReferenceException("Failed to add the product !");
+                throw new ArgumentNullException(nameof(product), "Product cannot be null for deletion!");
             }
         }
     }

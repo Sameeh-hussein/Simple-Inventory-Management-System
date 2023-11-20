@@ -31,19 +31,22 @@ namespace SIMS.Test
         }
 
         [Fact]
-        public void DeleteMethodShould()
+        public void DeleteMethod_Should_ReturnTrue_When_RemoveAProduct()
         {
             var prod = new Product("Egg", 10.5, 30);
 
             inventory.save(prod);
-            inventory.DeleteProduct(prod);
+            var result = inventory.DeleteProduct(prod);
 
-            var temp = inventory.Cast<Product>()
-                                .FirstOrDefault(x => x.name.Equals("Egg"));
+            Assert.True(result);
+            Assert.DoesNotContain(prod, inventory.Cast<Product>());
+        }
 
-            Assert.Null(temp);
-
-            Assert.Throws<NullReferenceException>(() => inventory.DeleteProduct(null));
+        [Fact]
+        public void DeleteMehtod_Should_ThrowExeption_When_PassNullProduct()
+        {
+            var ex = Assert.Throws<ArgumentNullException>(() => inventory.DeleteProduct(null));
+            Assert.Equal("Product cannot be null for deletion!", ex.Message);
         }
 
         [Fact]
