@@ -13,21 +13,23 @@ namespace SIMS.Test
         }
 
         [Fact]
-        public void SaveMethodShould()
+        public void SaveMethod_Should_ReturnTrue_When_AddAProduct()
         {
             var prod = new Product("Egg", 10.5, 30);
 
             inventory.save(prod);
 
-            var temp = inventory.Cast<Product>()
-                                .FirstOrDefault(x => x.name.Equals("Egg"));
+            var result = inventory.save(prod);
 
-            Assert.NotNull(temp);
-            Assert.Equal("Egg", temp.name);
-            Assert.Equal(10.5, temp.price);
-            Assert.Equal(30, temp.quantity);
+            Assert.True(result);
+            Assert.Contains(prod, inventory.Cast<Product>());
+        }
 
-            Assert.Throws<NullReferenceException>(() => inventory.save(null));
+        [Fact]
+        public void SaveMethod_Should_ThrowExeption_When_PassNullProduct()
+        {
+            var ex = Assert.Throws<ArgumentNullException>(() => inventory.save(null));
+            Assert.Equal("Product cannot be null for addition!", ex.Message);
         }
 
         [Fact]

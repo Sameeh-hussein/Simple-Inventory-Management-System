@@ -24,15 +24,16 @@ namespace SimpleInventoryManagementSystem
             }
         }
 
-        public void save(Product product)
+        public bool save(Product product)
         {
             if (product != null)
             {
                 inventory.Add(product);
+                return true;
             }
             else
             {
-                throw new NullReferenceException("Failed to add the product !");
+                throw new ArgumentNullException(nameof(product), "Product cannot be null for addition!");
             }
         }
 
