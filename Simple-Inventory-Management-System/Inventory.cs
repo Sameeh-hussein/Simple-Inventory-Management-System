@@ -58,5 +58,10 @@ namespace SimpleInventoryManagementSystem
                 throw new ArgumentNullException(nameof(product), "Product cannot be null for deletion!");
             }
         }
+
+        public List<Product> GetAll()
+        {
+            return inventory;
+        }
     }
 }

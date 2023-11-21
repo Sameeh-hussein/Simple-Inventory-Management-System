@@ -75,5 +75,22 @@ namespace SIMS.Test
 
             Assert.True(inventory.Exist("Egg"));
         }
+
+        [Fact]
+        public void GetAllMethod_Should_ReturnAllProduct_When_CallIt()
+        {
+            var prod1 = new Product("Egg", 10.5, 30);
+            var prod2 = new Product("Milk", 9.9, 5);
+
+            inventory.save(prod1);
+            inventory.save(prod2);
+
+            var result = inventory.GetAll();
+
+            Assert.NotNull(result); 
+            Assert.Equal(2, result.Count); 
+            Assert.Contains(prod1, result); 
+            Assert.Contains(prod2, result); 
+        }
     }
 }
