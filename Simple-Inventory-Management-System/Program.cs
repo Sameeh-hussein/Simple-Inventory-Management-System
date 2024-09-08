@@ -1,10 +1,8 @@
-﻿using SimpleInventoryManagementSystem;
-using System.Diagnostics;
-using System.Linq;
+﻿using Simple_Inventory_Management_System;
 
 internal class Program
 {
-    static Inventory inventory = new Inventory();
+    static readonly Inventory inventory = new();
 
     private static void Main(string[] args)
     {
@@ -24,6 +22,8 @@ internal class Program
 
         Console.Write("Enter the product name: ");
         Search(Console.ReadLine());
+
+        Console.ReadLine();
     }
 
     static void AddProduct()
@@ -34,14 +34,25 @@ internal class Program
         if (!inventory.Exist(name))
         {
             Console.Write("Enter the product price: ");
-            double price = Convert.ToDouble(Console.ReadLine());
+            decimal price = Convert.ToDecimal(Console.ReadLine());
+
+            Console.Write("Enter the currency number: 1.Dollar 2.Pound 3.Euro: ");
+            var currencyInput = Convert.ToInt32(Console.ReadLine());
+
+            var currency = currencyInput switch
+            {
+                1 => Currency.Dollar,
+                2 => Currency.Pound,
+                3 => Currency.Euro,
+                _ => throw new ArgumentException("Invalid currency!")
+            };
 
             Console.Write("Enter the product quantity: ");
             int quantity = Convert.ToInt32(Console.ReadLine());
 
             try
             {
-                inventory.save(new Product(name, price, quantity));
+                inventory.Save(new Product(name, new Price(price, currency), quantity));
                 Console.WriteLine("The product added successfully, thanks");
             }
             catch (Exception ex)
@@ -65,7 +76,7 @@ internal class Program
     {
         if (inventory.Exist(name))
         {
-            Product temp = inventory.findProduct(name);
+            Product temp = inventory.FindProduct(name);
             char yORn;
             Console.Write("would you want to change the name? [y/n]: ");
             yORn = Convert.ToChar(Console.ReadLine());
@@ -73,7 +84,7 @@ internal class Program
             if (yORn == 'y')
             {
                 Console.Write("Enter the new name: ");
-                temp.name = Console.ReadLine();
+                temp.Name = Console.ReadLine();
             }
 
             Console.Write("would you want to change the price? [y/n]: ");
@@ -82,7 +93,7 @@ internal class Program
             if (yORn == 'y')
             {
                 Console.Write("Enter the new price: ");
-                temp.price = Convert.ToDouble(Console.ReadLine());
+                temp.Price.Amount = Convert.ToDecimal(Console.ReadLine());
             }
 
             Console.Write("would you want to change the quantity? [y/n]: ");
@@ -91,7 +102,7 @@ internal class Program
             if (yORn == 'y')
             {
                 Console.Write("Enter the new quantity: ");
-                temp.price = Convert.ToInt32(Console.ReadLine());
+                temp.Quantity = Convert.ToInt32(Console.ReadLine());
             }
 
             Console.WriteLine("All changes saved. Thanks");
@@ -102,11 +113,11 @@ internal class Program
         }
     }
 
-    static void deleteProduct(string name)
+    static void DeleteProduct(string name)
     {
         if (inventory.Exist(name))
         {
-            Product temp = inventory.findProduct(name);
+            Product temp = inventory.FindProduct(name);
             try
             {
                 inventory.DeleteProduct(temp);
@@ -128,7 +139,7 @@ internal class Program
         if (inventory.Exist(name))
         {
             Console.WriteLine("Product Information: ");
-            Console.WriteLine(inventory.findProduct(name));
+            Console.WriteLine(inventory.FindProduct(name));
         }
         else
         {

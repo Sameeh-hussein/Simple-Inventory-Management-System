@@ -1,4 +1,4 @@
-using SimpleInventoryManagementSystem;
+using Simple_Inventory_Management_System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SIMS.Test
@@ -17,7 +17,7 @@ namespace SIMS.Test
         {
             var prod = new Product("Egg", 10.5, 30);
 
-            var result = inventory.save(prod);
+            var result = inventory.Save(prod);
 
             Assert.True(result);
             Assert.Contains(prod, inventory.Cast<Product>());
@@ -26,7 +26,7 @@ namespace SIMS.Test
         [Fact]
         public void SaveMethod_Should_ThrowExeption_When_PassNullProduct()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => inventory.save(null));
+            var ex = Assert.Throws<ArgumentNullException>(() => inventory.Save(null));
             Assert.Equal("Product cannot be null for addition! (Parameter 'product')", ex.Message);
         }
 
@@ -35,7 +35,7 @@ namespace SIMS.Test
         {
             var prod = new Product("Egg", 10.5, 30);
 
-            inventory.save(prod);
+            inventory.Save(prod);
             var result = inventory.DeleteProduct(prod);
 
             Assert.True(result);
@@ -57,13 +57,13 @@ namespace SIMS.Test
         {
             var prod = new Product(name, price, quantity);
 
-            inventory.save(prod);
-            var temp = inventory.findProduct(name);
+            inventory.Save(prod);
+            var temp = inventory.FindProduct(name);
 
             Assert.NotNull(temp);
-            Assert.Equal(name, temp.name);
-            Assert.Equal(price, temp.price);
-            Assert.Equal(quantity, temp.quantity);
+            Assert.Equal(name, temp.Name);
+            Assert.Equal(price, temp.Price);
+            Assert.Equal(quantity, temp.Quantity);
         }
 
         [Fact]
@@ -71,7 +71,7 @@ namespace SIMS.Test
         {
             var prod = new Product("Egg", 10.5, 30);
 
-            inventory.save(prod);
+            inventory.Save(prod);
 
             Assert.True(inventory.Exist("Egg"));
         }
@@ -82,8 +82,8 @@ namespace SIMS.Test
             var prod1 = new Product("Egg", 10.5, 30);
             var prod2 = new Product("Milk", 9.9, 5);
 
-            inventory.save(prod1);
-            inventory.save(prod2);
+            inventory.Save(prod1);
+            inventory.Save(prod2);
 
             var result = inventory.GetAll();
 

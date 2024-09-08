@@ -1,24 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleInventoryManagementSystem
+﻿namespace Simple_Inventory_Management_System
 {
     public class Product
     {
-        public string name { get; set; }
-        public double price { get; set; }
-        public long quantity { get; set; }
+        private static long IdCounter = 0;
+        public long Id { get; private set; }
 
-        public Product(string name, double price, long quantity)
+        private string _name = string.Empty;
+        public string Name
         {
-            this.name = name;
-            this.price = price;
-            this.quantity = quantity;
+            get => _name;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException(nameof(value), "Product must has a name !");
+                }
+
+                _name = value;
+            }
         }
 
-        public override string ToString() => $"Name: {this.name}, Price: {this.price}, Quantity: {this.quantity}";
+        public Price Price { get; set; }
+
+        private long _quantity;
+        public long Quantity
+        {
+            get => _quantity;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentNullException(nameof(value), "Invalid quantity !");
+                }
+
+                _quantity = value;
+            }
+        }
+
+        public Product(string name, Price price, long quantity)
+        {
+            Id = ++IdCounter;
+            Name = name;
+            Price = price ??
+                throw new ArgumentNullException(nameof(price), "Price can't be null");
+            Quantity = quantity;
+        }
+
+        private char CurrencySign()
+        {
+            return Price.Currency switch
+            {
+                Currency.Dollar => '$',
+                Currency.Euro => '€',
+                Currency.Pound => '£',
+                _ => throw new NotImplementedException()
+            };
+        }
+
+        public override string ToString() =>
+            $"Product Id: {Id}, Name: {Name}, Price: {Price.Amount} {CurrencySign()}, Quantity: {Quantity}";
     }
 }

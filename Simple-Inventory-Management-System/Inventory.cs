@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
-namespace SimpleInventoryManagementSystem
+namespace Simple_Inventory_Management_System
 {
     public class Inventory : IEnumerable
     {
-        private List<Product> inventory;
+        private readonly List<Product> inventory;
 
         public Inventory()
         {
@@ -24,7 +19,7 @@ namespace SimpleInventoryManagementSystem
             }
         }
 
-        public bool save(Product? product)
+        public bool Save(Product? product)
         {
             if (product != null)
             {
@@ -39,12 +34,12 @@ namespace SimpleInventoryManagementSystem
 
         public bool Exist(string name)
         {
-            return inventory.Any(it => it.name == name);
+            return inventory.Any(it => it.Name.Equals(name));
         }
 
-        public Product findProduct(string name)
+        public Product FindProduct(string name)
         {
-            return inventory.First(it => it.name == name);
+            return inventory.First(it => it.Name.Equals(name));
         }
 
         public bool DeleteProduct(Product? product)
