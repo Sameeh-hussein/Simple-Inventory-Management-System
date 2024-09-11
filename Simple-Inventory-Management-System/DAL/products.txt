@@ -1,0 +1,40 @@
+Laptop;1200.50;Dollar;15
+Smartphone;799.99;Euro;50
+Tablet;350.75;Pound;30
+Headphones;199.99;Dollar;120
+Monitor;275.49;Euro;60
+Keyboard;49.99;Dollar;200
+Mouse;29.99;Pound;180
+Smartwatch;149.99;Euro;70
+Gaming Console;499.99;Dollar;40
+Television;999.99;Pound;20
+Camera;850.00;Dollar;25
+External Hard Drive;89.99;Euro;100
+Bluetooth Speaker;55.50;Dollar;85
+Wireless Charger;39.99;Euro;150
+Drone;550.25;Pound;10
+VR Headset;450.00;Dollar;18
+Electric Scooter;899.99;Euro;35
+Laptop Stand;29.99;Dollar;120
+USB-C Hub;19.99;Pound;250
+Fitness Tracker;99.99;Euro;90
+4K Projector;1200.00;Dollar;12
+Desktop PC;1350.75;Pound;8
+Portable Power Bank;49.99;Euro;140
+Noise Cancelling Earbuds;249.99;Dollar;60
+Action Camera;199.99;Euro;45
+Smart Home Assistant;129.99;Dollar;95
+Mechanical Keyboard;119.99;Pound;75
+Portable Monitor;189.99;Euro;65
+3D Printer;999.99;Dollar;10
+Electric Bike;1500.00;Euro;7
+Coffee Machine;89.99;Pound;35
+Air Purifier;149.99;Dollar;50
+Waterproof Bluetooth Speaker;69.99;Euro;70
+Laptop Sleeve;25.99;Pound;300
+Gaming Chair;350.00;Dollar;25
+Wireless Mouse;45.99;Euro;160
+Smart Thermostat;199.99;Dollar;40
+HD Webcam;79.99;Pound;110
+Electric Toothbrush;59.99;Euro;90
+Smart Light Bulbs (4-pack);49.99;Dollar;80

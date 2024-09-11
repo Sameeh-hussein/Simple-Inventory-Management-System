@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Simple-Inventory-Management-System\SimpleInventoryManagementSystem.csproj" />
+    <ProjectReference Include="..\Simple-Inventory-Management-System\SIMS.csproj" />
   </ItemGroup>
 
 </Project>

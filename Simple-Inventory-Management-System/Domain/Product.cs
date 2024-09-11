@@ -1,6 +1,8 @@
-﻿namespace Simple_Inventory_Management_System
+﻿using Simple_Inventory_Management_System.Contract;
+
+namespace Simple_Inventory_Management_System.ProductManagement
 {
-    public class Product
+    public class Product : ISavable
     {
         private static long IdCounter = 0;
         public long Id { get; private set; }
@@ -46,18 +48,15 @@
             Quantity = quantity;
         }
 
-        private char CurrencySign()
+        public Product(Product productToCopy)
         {
-            return Price.Currency switch
-            {
-                Currency.Dollar => '$',
-                Currency.Euro => '€',
-                Currency.Pound => '£',
-                _ => throw new NotImplementedException()
-            };
+            Name = productToCopy.Name;
+            Price = new Price(productToCopy.Price.Amount, productToCopy.Price.Currency);
+            Quantity = productToCopy.Quantity;
         }
 
-        public override string ToString() =>
-            $"Product Id: {Id}, Name: {Name}, Price: {Price.Amount} {CurrencySign()}, Quantity: {Quantity}";
+        public override string ToString() => $"Product Id: {Id}, Name: {Name}, Price: {Price}, Quantity: {Quantity}";
+
+        public string ConvertToStringForSaving() => $"{Name};{Price.Amount};{Price.Currency};{Quantity}";
     }
 }
